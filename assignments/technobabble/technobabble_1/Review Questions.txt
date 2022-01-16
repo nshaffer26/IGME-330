@@ -1,0 +1,13 @@
+1. Structure, presentation, behavior
+2. HTML, CSS, JavaScript
+3. Including "use strict"; does the following:
+	- Eliminates some JavaScript silent errors or bloopers by changing them to throw errors
+	- Fixes mistakes that make it difficult for JavaScript engines to perform optimizations
+	- Prohibits use of potential reserved words likely to be defined in future versions of ECMAScript
+4. Yes
+5. Avoiding duplicate code, such as using a function to execute repeated actions on a set of similar variables
+6. A variable or expression
+7. "#"
+8. By using window.onload or by moving the <script> tags to the bottom of the <body> tag
+9. A reference to the function
+10. The event type and a function reference
