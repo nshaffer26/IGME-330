@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+body {
+    font-family: 'Bangers', monospace;
+}
+
+#output {
+    font-size: 200%;
+}
+
+#give-one,
+#give-five {
+    width: 200px;
+    height: 50px;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+#give-five {
+    display: none;
+}
+
+@media only screen and (min-width: 240px) {
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    html,
+    body {
+        margin: 0;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        background-color: #d17723;
+        text-align: center;
+        padding: 0.8rem;
+        margin: 0;
+    }
+
+    #give-one,
+    #give-five {
+        width: 200px;
+        height: 75pt;
+        font-size: 1.2rem;
+        margin: 10px;
+    }
+
+    #output {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (min-width: 320px) {
+
+    html,
+    body,
+    .container {
+        height: 100%;
+        margin: 0;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        background-color: #174287;
+        color: #F5F5F5;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+        background-color: #23D160;
+    }
+
+    #give-one,
+    #give-five {
+        width: 300px;
+        height: 75pt;
+        font-size: 1.5rem;
+    }
+
+    body {
+        color: darkgray;
+        font-size: 2rem;
+    }
+
+    #output {
+        text-align: center;
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    body {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    h1 {
+        background-color: #FF3860;
+    }
+
+    .container {
+        display: block;
+        margin: 1rem;
+    }
+
+    #output {
+        text-align: left;
+    }
+}
+
+@media only screen and (min-width: 1408px) {
+    #give-five {
+        display: block;
+    }
+}
