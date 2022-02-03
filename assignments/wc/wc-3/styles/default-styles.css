@@ -1,0 +1,24 @@
+/* https://www.fontspace.com/sf-distant-galaxy-font-f6436*/
+
+@font-face {
+    font-family: SfDistantGalaxy;
+    src: url(../fonts/SfDistantGalaxy-0l3d.ttf);
+}
+
+@font-face {
+    font-family: SfDistantGalaxyOutline;
+    src: url(../fonts/SfDistantGalaxyOutline-xoeO.ttf);
+}
+
+.card-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+sw-card {
+    margin: 0 0.5rem 0.5rem 0;
+}
+
+body {
+    font-family: sans-serif;
+}
