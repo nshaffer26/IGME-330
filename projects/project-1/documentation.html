@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find a Pet - Documentation</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <script src="src/main.js" type="module"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <app-nav data-page="documentation"></app-nav>
+
+    <!-- Main Content -->
+    <div class="hero is-large is-primary p-4">
+        <div class="hero-head">
+            <p class="title">
+                Documentation
+            </p>
+            <p class="subtitle">
+                Find a pet to adopt today!
+            </p>
+        </div>
+    </div>
+    <div class="columns is-vcentered p-4">
+        <div class="column">
+            <p class="is-size-3">API:</p>
+            <p>
+                The <a href="https://www.petfinder.com/developers/v2/docs/">Petfinder</a> API provides information
+                for adoptable pets, including their location, breed, age, gender, and more.
+            </p>
+            <br>
+            <p class="is-size-3">About:</p>
+            <p>
+                This app will allow users to search for adoptable pets by:
+            </p>
+            <div class="content">
+                <ul>
+                    <li>Location</li>
+                    <li>Species</li>
+                    <li>Breed</li>
+                    <li>Size</li>
+                    <li>Gender</li>
+                    <li>Age</li>
+                    <li>etc.</li>
+                </ul>
+            </div>
+            <p>
+                Users will also be able to view a map of pets if they enter their location, as well as add pets to their
+                favorites for later.
+            </p>
+            <br>
+            <p class="is-size-3">Interface Mockup:</p>
+            <img src="./images/project-mockup.jpg">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</body>
+
+</html>
