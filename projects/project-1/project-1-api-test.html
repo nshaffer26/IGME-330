@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Fetch - Test Project 1 API</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>Fetch - Test Project 1 API</h2>
+
+    <hr>
+    <button id="my-button">Load Data</button>
+    <div id="output">Click button to load</div>
+
+
+    <script>
+        let apiKey = "FwBlz0h5e87uRhakg4Y095bPOZP5493K4vjjsdybmpZoLSEmFN";
+        let apiSecret = "p8manHfrHkyNDO3qmmRdNRIHn2kcFydFoLpcXobw";
+
+        document.querySelector("#my-button").onclick = loadJSONFetch;
+
+        async function getAPIAccessHeaders()
+        {
+            try
+            {
+                let response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
+                    body: `grant_type=client_credentials&client_id=${apiKey}&client_secret=${apiSecret}`,
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    method: "POST"
+                });
+                if (!response.ok)
+                {
+                    throw new Error(response.status);
+                }
+
+                let json = await response.json();
+
+                const apiAccessToken = json.access_token;
+                const apiTokenType = json.token_type;
+                const authHeaders = {
+                    headers: {
+                        Authorization: `${apiTokenType} ${apiAccessToken}`
+                    }
+                };
+
+                return authHeaders
+            }
+            catch (e)
+            {
+                console.log(e);
+            }
+        }
+
+        async function loadJSONFetch()
+        {
+            try
+            {
+                let response = await fetch("https://api.petfinder.com/v2/animals", await getAPIAccessHeaders());
+                if (!response.ok)
+                {
+                    throw new Error(response.status);
+                }
+
+                let json = await response.json();
+                let out = "<ul>";
+                for(a of json.animals)
+                {
+                    out += `<li>ID: ${a.id}, Name: ${a.name}</li>`
+                }
+                out += "<ul>";
+                document.querySelector("#output").innerHTML = out;
+            }
+            catch (e)
+            {
+                console.log(e);
+            }
+        }
+    </script>
+</body>
+
+</html>
