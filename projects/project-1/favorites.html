@@ -8,12 +8,14 @@
 
     <title>Find a Pet - Favorites</title>
 
+    <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <script src="src/main.js" type="module"></script>
+    <script src="./src/loader.js" type="module"></script>
+    <script src="./src/favorites.js" type="module"></script>
 </head>
 
 <body>
@@ -30,6 +32,17 @@
                 Find a pet to adopt today!
             </p>
         </div>
+    </div>
+
+    <div id="controls" class="column is-one-quarter">
+        <div class="field">
+            <div class="control">
+                <button id="controls-clear" class="button is-link">Clear Favorites</button>
+            </div>
+        </div>
+    </div>
+    <div id="results">
+
     </div>
 
     <!-- Footer -->

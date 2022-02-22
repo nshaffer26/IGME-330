@@ -1,16 +1,20 @@
 const template = document.createElement("template");
 template.innerHTML = `
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"
->
+    crossorigin="anonymous" referrerpolicy="no-referrer">
     
+<style>
+    #icon {
+        width: 100%;
+    }
+</style>
+
 <nav class="navbar has-shadow is-white">
     <div class="navbar-brand">
         <a class="navbar-item" href="home.html">
-            <i class="fa-solid fa-paw"></i>
+            <img id="icon" src="./images/paw-solid.svg">
         </a>
         <a class="navbar-burger" id="burger">
             <span></span>

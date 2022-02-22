@@ -8,12 +8,14 @@
 
     <title>Find a Pet - App</title>
 
+    <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <script src="src/main.js" type="module"></script>
+    <script src="./src/loader.js" type="module"></script>
+    <script src="./src/app.js" type="module"></script>
 </head>
 
 <body>
@@ -29,6 +31,58 @@
             <p class="subtitle">
                 Find a pet to adopt today!
             </p>
+        </div>
+    </div>
+    <div class="columns p-4 mb-0">
+        <div id="controls" class="column is-one-quarter">
+            <div class="field">
+                <label class="label">Animal Type</label>
+                <div class="control is-expanded">
+                    <div class="select is-fullwidth">
+                        <select id="controls-type">
+                            <option value="dog">Dog</option>
+                            <option value="cat">Cat</option>
+                            <option value="rabbit">Rabbit</option>
+                            <option value="small-furry">Small and Furry</option>
+                            <option value="horse">Horse</option>
+                            <option value="bird">Bird</option>
+                            <option value="scales-fins-other">Scales, Fins, and Other</option>
+                            <option value="barnyard">Barnyard</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Breed</label>
+                <div class="control">
+                    <input id="controls-breed" class="input" type="text" placeholder="Enter a breed">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button id="controls-search" class="button is-link">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div id="results">
+
+            </div>
+            <article class="message is-danger">
+                <div id="results-danger" class="message-body">
+
+                </div>
+            </article>
+            <fieldset id="results-pagination">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button id="results-prev" class="button is-link">Previous</button>
+                    </div>
+                    <div class="control">
+                        <button id="results-next" class="button is-link">Next</button>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     </div>
 
