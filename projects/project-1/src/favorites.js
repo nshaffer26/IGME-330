@@ -1,6 +1,5 @@
-import { getAPIAccessHeaders, getSettings } from "./utils.js";
-
-let localStorageKey = "njs7772-p1-settings";
+import Pet from "./Pet.js";
+import { getAPIAccessHeaders, getSettings, setSettings, addFavorite, removeFavorite } from "./utils.js";
 
 let clear = document.querySelector("#controls-clear");
 clear.addEventListener("click", clearFavorites);
@@ -10,23 +9,27 @@ showFavorites();
 function showFavorites()
 {
     results.innerHTML = "";
-    
-    let settings = getSettings();
 
-    if(settings)
+    let settings = getSettings();
+    if (settings)
     {
-        for (let favorite of settings.favorites)
+        for (let fav of settings.favorites)
         {
             const petCard = document.createElement("pet-card");
-            petCard.dataset.page = "favorites";
-    
-            petCard.dataset.id = favorite.id;
-            petCard.dataset.name = favorite.name ?? "No name found";
-            petCard.dataset.img = favorite.img ?? "";
-            petCard.dataset.description = favorite.description ?? "";
-            petCard.dataset.link = favorite.link ?? "";
-    
+            
+            const pet = new Pet(fav.id, fav.name, fav.image, fav.breed, fav.gender, fav.age, fav.link);
+
+            petCard.pet = pet;
+            petCard.callback = petCard => 
+            {
+                removeFavorite(petCard);
+                petCard.remove();
+            }
+
             results.appendChild(petCard);
+
+            petCard.button.className = "delete";
+            petCard.button.innerHTML = "";
         }
     }
 }
@@ -37,7 +40,7 @@ function clearFavorites()
     if (settings)
     {
         settings.favorites = [];
-        localStorage.setItem(localStorageKey, JSON.stringify(settings));
+        setSettings(settings);
     }
     showFavorites();
 }

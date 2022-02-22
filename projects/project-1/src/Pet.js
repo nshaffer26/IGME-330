@@ -1,4 +1,4 @@
-export default class PetCard
+export default class Pet
 {
     constructor(id, name, image, breed, gender, age, link)
     {

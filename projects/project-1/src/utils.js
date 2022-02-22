@@ -48,5 +48,53 @@ function getSettings()
 
     return storedSettings;
 }
+function setSettings(newSettings)
+{
+    localStorage.setItem(localStorageKey, JSON.stringify(newSettings));
+}
 
-export { getAPIAccessHeaders, getSettings };
+function addFavorite(petCard)
+{
+    petCard.favorite = true;
+    petCard.icon.style.filter = "invert(84%) sepia(35%) saturate(2957%) hue-rotate(359deg) brightness(102%) contrast(109%)";
+
+    // Settings will always exist when addFavorite is called
+    let settings = getSettings();
+    let exists = false;
+    for (let favorite of settings.favorites)
+    {
+        if (favorite.id == petCard.pet.id)
+        {
+            exists = true;
+            break;
+        }
+    }
+    if (!exists)
+    {
+        settings.favorites.push(petCard.pet);
+        setSettings(settings);
+    }
+    else
+    {
+        removeFavorite(petCard);
+    }
+}
+function removeFavorite(petCard)
+{
+    petCard.favorite = false;
+    petCard.icon.style.filter = "";
+
+    // Settings will always exist when removeFavorite is called
+    let settings = getSettings();
+    for (let i = 0; i < settings.favorites.length; i += 1)
+    {
+        if (petCard.pet.id == settings.favorites[i].id)
+        {
+            settings.favorites.splice(i, 1);
+            break;
+        }
+    }
+    setSettings(settings);
+}
+
+export { getAPIAccessHeaders, getSettings, setSettings, addFavorite, removeFavorite };

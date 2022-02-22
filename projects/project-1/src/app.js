@@ -1,7 +1,7 @@
-import { getAPIAccessHeaders, getSettings } from "./utils.js";
+import Pet from "./Pet.js";
+import { getAPIAccessHeaders, getSettings, setSettings, addFavorite, removeFavorite } from "./utils.js";
 
 let url = "https://api.petfinder.com";
-let localStorageKey = "njs7772-p1-settings";
 let page = 1;
 let maxPages;
 
@@ -49,7 +49,7 @@ async function getSearchResults()
         breed: breed,
         favorites: favorites
     }
-    localStorage.setItem(localStorageKey, JSON.stringify(settings));
+    setSettings(settings);
 
     let response;
     let json;
@@ -60,7 +60,6 @@ async function getSearchResults()
     {
         response = await fetch(`${url}/v2/animals?type=${type}&page=${page}`, await getAPIAccessHeaders());
         json = await response.json();
-        console.log(json);
     }
     else
     {
@@ -96,7 +95,6 @@ async function getSearchResults()
             danger.innerHTML = "Invalid breed, showing all breeds"
             response = await fetch(`${url}/v2/animals?type=${type}&page=${page}`, await getAPIAccessHeaders());
             json = await response.json();
-            console.log(json);
         }
     }
 
@@ -115,6 +113,7 @@ async function getSearchResults()
         next.disabled = true;
     }
 
+    console.log(json);
     showResults(json);
 }
 
@@ -125,17 +124,15 @@ function showResults(json)
 
     for (let animal of json.animals)
     {
-        const petCard = document.createElement("pet-card");
-        petCard.dataset.page = "app";
-        petCard.dataset.id = animal.id;
-        petCard.dataset.name = animal.name ?? "No name found";
-        petCard.dataset.description = animal.description ?? "";
-        petCard.dataset.link = animal.url ?? "";
-
+        let img;
         if (animal.photos.length != 0)
         {
-            petCard.dataset.img = animal.photos[0].medium ?? "";
+            img = animal.photos[0].medium ?? "";
         }
+
+        const petCard = document.createElement("pet-card");
+
+        const pet = new Pet(animal.id, animal.name, img, animal.breeds.primary, animal.gender, animal.age, animal.url);
 
         for (let favorite of settings.favorites)
         {
@@ -145,6 +142,9 @@ function showResults(json)
                 break;
             }
         }
+
+        petCard.pet = pet;
+        petCard.callback = petCard => addFavorite(petCard);
 
         results.appendChild(petCard);
     }
