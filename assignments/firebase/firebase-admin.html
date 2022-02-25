@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Firebase Admin</title>
+</head>
+
+<body>
+    <h1>High Scores</h1>
+    <ul id="scoresList">
+        <li>No data yet!</li>
+    </ul>
+
+    <script type="module">
+        /* #1 - The Firebase setup code goes here  - both imports, `firebaseConfig` and `app` */
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBUrtqaJnBnKccG76MoGpPgvUQQYXjx7mg",
+            authDomain: "high-scores-1db83.firebaseapp.com",
+            projectId: "high-scores-1db83",
+            storageBucket: "high-scores-1db83.appspot.com",
+            messagingSenderId: "365915419045",
+            appId: "1:365915419045:web:e50a0cfd52a6d20f4d384c"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        console.log(app); // make sure firebase is loaded
+
+        // #2 NEW STUFF
+        const db = getDatabase();
+        const scoresRef = ref(db, 'scores');
+        const scoresList = document.querySelector("#scoresList");
+
+        const scoresChanged = (snapshot) =>
+        {
+            scoresList.innerHTML = "";
+            snapshot.forEach(score =>
+            {
+                const childKey = score.key;
+                const childData = score.val();
+                scoresList.innerHTML += `<li>${childData.userId} - ${childData.game} - ${childData.score}</li>`;
+                console.log(childKey, childData);
+            });
+        }
+
+        onValue(scoresRef, scoresChanged);
+    </script>
+</body>
+
+</html>
