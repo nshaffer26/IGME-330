@@ -27,12 +27,3 @@ async function loadRandomPetImage()
     document.querySelector("#random-pet").src = image;
     document.querySelector("#random-pet-link").href = link;
 }
-
-// TODO: For testing purposes only, remove later
-let response = await fetch("https://api.petfinder.com/v2/types", await getAPIAccessHeaders());
-let json = await response.json();
-console.log(json);
-
-response = await fetch("https://api.petfinder.com/v2/types", await getAPIAccessHeaders());
-json = await response.json();
-console.log(json);

@@ -6,34 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Find a Pet - Favorites</title>
+    <title>Adopt Don't Shop - Favorites</title>
 
-    <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
 
     <script src="./src/loader.js" type="module"></script>
     <script src="./src/favorites.js" type="module"></script>
 </head>
 
 <body>
+    <!-- Header -->
+    <app-header>
+        <span slot="title">Adopt Don't Shop</span>
+        <span slot="subtitle">Find a pet to adopt today!</span>
+    </app-header>
+
     <!-- Navigation -->
     <app-nav data-page="favorites"></app-nav>
 
     <!-- Main Content -->
-    <div class="hero is-large is-primary p-4">
-        <div class="hero-head">
-            <p class="title">
-                Favorites
-            </p>
-            <p class="subtitle">
-                Find a pet to adopt today!
-            </p>
-        </div>
-    </div>
-
     <div id="controls" class="column is-one-quarter">
         <div class="field">
             <div class="control">
@@ -46,7 +44,7 @@
     </div>
 
     <!-- Footer -->
-    <app-footer></app-footer>
+    <app-footer>&copy; 2022 Nicholas Shaffer</app-footer>
 </body>
 
 </html>

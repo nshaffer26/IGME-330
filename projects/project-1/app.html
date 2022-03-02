@@ -6,37 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Find a Pet - App</title>
+    <title>Adopt Don't Shop - App</title>
 
-    <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles/main.css">
 
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
     <script src="./src/loader.js" type="module"></script>
     <script src="./src/app.js" type="module"></script>
 </head>
 
 <body>
+    <!-- Header -->
+    <app-header>
+        <span slot="title">Adopt Don't Shop</span>
+        <span slot="subtitle">Find a pet to adopt today!</span>
+    </app-header>
+
     <!-- Navigation -->
     <app-nav data-page="app"></app-nav>
 
     <!-- Main Content -->
-    <div class="hero is-large is-primary p-4">
-        <div class="hero-head">
-            <p class="title">
-                App
-            </p>
-            <p class="subtitle">
-                Find a pet to adopt today!
-            </p>
-        </div>
-    </div>
     <div class="columns p-4 mb-0">
         <div id="controls" class="column is-one-quarter">
             <div class="field">
-                <label class="label">Animal Type</label>
+                <label class="label" for="controls-type">Animal Type</label>
                 <div class="control is-expanded">
                     <div class="select is-fullwidth">
                         <select id="controls-type">
@@ -53,10 +54,27 @@
                 </div>
             </div>
             <div class="field">
-                <label class="label">Breed</label>
+                <label class="label" for="controls-breed">Breed</label>
                 <div class="control">
                     <input id="controls-breed" class="input" type="text" placeholder="Enter a breed">
                 </div>
+            </div>
+            <div class="field">
+                <label class="label" for="controls-location">Location</label>
+                <div class="control">
+                    <input id="controls-location" class="input" type="text" placeholder="Enter your location">
+                </div>
+            </div>
+            <label class="label" for="controls-distance">Distance</label>
+            <div class="field has-addons">
+                <p class="control is-expanded">
+                    <input id="controls-distance" class="input" type="number" min="1" max="500" placeholder="10">
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        miles
+                    </a>
+                </p>
             </div>
             <div class="field">
                 <div class="control">
@@ -65,29 +83,74 @@
             </div>
         </div>
         <div class="column">
-            <div id="results">
-
+            <div class="columns mb-0">
+                <div class="column">
+                    <fieldset class="results-display">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link results-list">View as List</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-link results-map">View as Map</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="column">
+                    <fieldset class="results-pagination">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link results-prev">Previous</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-link results-next">Next</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
             </div>
             <article class="message is-danger">
-                <div id="results-danger" class="message-body">
-
-                </div>
+                <div id="results-danger" class="message-body"></div>
             </article>
-            <fieldset id="results-pagination">
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button id="results-prev" class="button is-link">Previous</button>
-                    </div>
-                    <div class="control">
-                        <button id="results-next" class="button is-link">Next</button>
-                    </div>
+            <article class="message is-info">
+                <div id="results-info" class="message-body"></div>
+            </article>
+
+            <div id="results"></div>
+            <div id="map"></div>
+
+            <br>
+            <div class="columns mb-0">
+                <div class="column">
+                    <fieldset class="results-display">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link results-list">View as List</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-link results-map">View as Map</button>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
-            </fieldset>
+                <div class="column">
+                    <fieldset class="results-pagination">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link results-prev">Previous</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-link results-next">Next</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <app-footer></app-footer>
+    <app-footer>&copy; 2022 Nicholas Shaffer</app-footer>
 </body>
 
 </html>

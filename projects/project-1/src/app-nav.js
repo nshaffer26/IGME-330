@@ -11,7 +11,7 @@ template.innerHTML = `
     }
 </style>
 
-<nav class="navbar has-shadow is-white">
+<nav class="navbar is-white">
     <div class="navbar-brand">
         <a class="navbar-item" href="home.html">
             <img id="icon" src="./images/paw-solid.svg">
@@ -45,6 +45,7 @@ class AppNav extends HTMLElement
         this.currentPage = this.shadowRoot.querySelector("#" + this.dataset.page);
         this.currentPage.classList.remove("is-hoverable");
         this.currentPage.classList.add("has-text-weight-bold");
+        this.currentPage.style["border-bottom"] = "1px solid #2CB3F2"
 
         this.links = this.shadowRoot.querySelectorAll("#nav-links a");
 

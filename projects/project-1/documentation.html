@@ -6,32 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Find a Pet - Documentation</title>
+    <title>Adopt Don't Shop - Documentation</title>
 
-    <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
 
     <script src="./src/loader.js" type="module"></script>
 </head>
 
 <body>
+    <!-- Header -->
+    <app-header>
+        <span slot="title">Adopt Don't Shop</span>
+        <span slot="subtitle">Find a pet to adopt today!</span>
+    </app-header>
+
     <!-- Navigation -->
     <app-nav data-page="documentation"></app-nav>
 
     <!-- Main Content -->
-    <div class="hero is-large is-primary p-4">
-        <div class="hero-head">
-            <p class="title">
-                Documentation
-            </p>
-            <p class="subtitle">
-                Find a pet to adopt today!
-            </p>
-        </div>
-    </div>
     <div class="columns is-vcentered p-4">
         <div class="column">
             <p class="is-size-3">Project Requirements</p>
@@ -60,6 +59,12 @@
                             Stack Overflow: Events
                         </a>
                     </li>
+                    <li>
+                        <a
+                            href="https://stackoverflow.com/questions/44462355/regex-to-match-exactly-5-numbers-and-one-optional-space">
+                            Stack Overflow: ZIP Code Regex
+                        </a>
+                    </li>
                     <li><a href="https://developer.mozilla.org/en-US/">MDN Web Docs</a></li>
                     <li><a href="https://kigiri.github.io/fetch/">cURL to Fetch</a></li>
                     <li><a href="https://codepen.io/sosuke/pen/Pjoqqp">SVG Color Change</a></li>
@@ -69,28 +74,71 @@
             <p class="is-size-3">API</p>
             <div class="content">
                 <ul>
-                    <li><a href="https://www.petfinder.com/developers/">API Home</a></li>
-                    <li><a href="https://www.petfinder.com/developers/v2/docs/">API Documentation</a></li>
+                    <li><a href="https://www.petfinder.com/developers/">Petfinder API Home</a></li>
+                    <li><a href="https://www.petfinder.com/developers/v2/docs/">Petfinder API Documentation</a></li>
                     <li>Endpoint: <a
-                            href="https://api.petfinder.com/v2/animals">https://api.petfinder.com/v2/animals</a></li>
-                    <li>API key and secret required</li>
+                            href="https://www.petfinder.com/developers/v2/docs/#get-animals">https://api.petfinder.com/v2/animals</a>
+                    </li>
+                    <li><a href="https://www.mapbox.com/">Mapbox API Home</a></li>
+                    <li><a href="https://docs.mapbox.com/">Mapbox API Documentation</a></li>
+                    <li>Endpoint: <a
+                            href="https://docs.mapbox.com/api/search/geocoding/#mapboxplaces">https://api.mapbox.com/geocoding/v5/mapbox.places</a>
+                    </li>
                 </ul>
             </div>
             <br>
             <p class="is-size-3">Noteworthy</p>
-            <p>
-                TODO
-            </p>
+            <div class="content">
+                <p>The following technologies were deployed in the making of this project:</p>
+                <ul>
+                    <li>Web components were used to create custom elements. They were utilized for the website's header,
+                        footer, navigation, and pet card objects.</li>
+                    <li>Bulma was used to provide consistent and pleasant styling throughout the website.</li>
+                    <li>Both the Petfinder API and the Mapbox API were used to collect and display information about
+                        adoptable pets. Specicially, the Mapbox API allowed for pets to be displayed on a map based on a
+                        location entered by the user.</li>
+                    <li>Fetch and promises were used to communicate with both APIs.</li>
+                    <li>Font Awesome was used to obtain basic icons.</li>
+                    <li>Google Fonts was used to obtain a unique font for the website.</li>
+                </ul>
+                <p>My work on this project goes outside what was covered in class in several ways, including:</p>
+                <ul>
+                    <li>The use of two separate APIs to get information about adoptable pets and their locations.</li>
+                    <li>Favoriting functionality that toggles whether a pet is in your favorites without having to
+                        explicitly clear it from the favorites page.</li>
+                    <li>The ability to view results as either a list or as markers on a map.</li>
+                    <li>The ability to initiate a search with the ENTER key.</li>
+                    <li>Next and previous page buttons that disable if you are on the first or last page respectively.
+                    </li>
+                    <li>A custom "No Image Found" image for API results which are missing a photo.</li>
+                    <li>A custom font from Google Fonts</li>
+                    <li>Pertinent warnings and indicators for the user if they are doing something incorrectly</li>
+                </ul>
+            </div>
             <br>
             <p class="is-size-3">Grading</p>
             <p>
-                TODO
+                As per the <a
+                    href="https://github.com/tonethar/IGME-330-Spring-2022/blob/main/projects/p1-final.md#iv-rubric">rubric</a>,
+                all requirements appear to have been met. For ways in which I went above and beyond, see the Noteworthy
+                section above.
             </p>
             <br>
             <p class="is-size-3">To Do</p>
-            <p>
-                TODO
-            </p>
+            <div class="content">
+                <p>Given additional time, I would have liked to accomplish at least the following:</p>
+                <ul>
+                    <li>Additional controls, such as the option to search by age or gender.</li>
+                    <li>Some sorting options for the user, such as the ability to sort by oldest or newest entries.
+                        Currently, the app defaults to showing the most recent pets to be put up for adoption first.
+                    </li>
+                    <li>More sofisticated controls for searching for a breed. Ideally it would be a combination of a
+                        search
+                        bar and a dropdown. Given the number and complexity of breed types, it would afford the user
+                        more
+                        control over the results they receive if they are not familiar with animal breeds.</li>
+                </ul>
+            </div>
             <br>
             <p class="is-size-3">Proposal</p>
             <p class="is-size-4">API</p>
@@ -125,7 +173,7 @@
     </div>
 
     <!-- Footer -->
-    <app-footer></app-footer>
+    <app-footer>&copy; 2022 Nicholas Shaffer</app-footer>
 </body>
 
 </html>

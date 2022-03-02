@@ -8,6 +8,9 @@ template.innerHTML = `
     crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <style>
+    a {
+        color: #2CB3F2;
+    }
     .card-image {
         width: 100%;
         height: 300px;
@@ -90,17 +93,6 @@ class PetCard extends HTMLElement
     {
         this.button.onclick = null;
     }
-
-    // TODO: Necessary?
-    // static get observedAttributes()
-    // {
-    //     return ["data-favorite"];
-    // }
-    // attributeChangedCallback(attributeName, oldVal, newVal)
-    // {
-    //     console.log(attributeName, oldVal, newVal);
-    //     this.render();
-    // }
 
     render()
     {
