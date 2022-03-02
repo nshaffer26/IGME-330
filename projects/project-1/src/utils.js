@@ -1,7 +1,7 @@
-// let apiKey = "FwBlz0h5e87uRhakg4Y095bPOZP5493K4vjjsdybmpZoLSEmFN";
-// let apiSecret = "p8manHfrHkyNDO3qmmRdNRIHn2kcFydFoLpcXobw";
-let apiKey = "9eKXDAwUeB1f6qtX7xWoL5rCwSkbzvqVBozRW4XtxBPhqNun5t";
-let apiSecret = "KnNSJJDFgUXUuc2yWBSugdfElLeXlqoh9RA2LpbB";
+let apiKey = "FwBlz0h5e87uRhakg4Y095bPOZP5493K4vjjsdybmpZoLSEmFN";
+let apiSecret = "p8manHfrHkyNDO3qmmRdNRIHn2kcFydFoLpcXobw";
+// let apiKey = "9eKXDAwUeB1f6qtX7xWoL5rCwSkbzvqVBozRW4XtxBPhqNun5t";
+// let apiSecret = "KnNSJJDFgUXUuc2yWBSugdfElLeXlqoh9RA2LpbB";
 
 let localStorageKey = "njs7772-p1-settings";
 

@@ -290,13 +290,13 @@ async function testBreed(type, breed)
         if (b.name.toLowerCase() === breed.toLowerCase().trim())
         {
             isValidBreed = true;
-            breed = breed.replace(" ", "-");
+            breed = breed.replaceAll(" ", "-");
             break;
         }
         if (b.name.toLowerCase().includes(breed.toLowerCase().trim()))
         {
             isValidBreed = true;
-            breed = b.name.replace(" / ", " ").replace(/ /g, "-");
+            breed = b.name.replaceAll(" / ", " ").replaceAll(/ /g, "-");
             break;
         }
     }
