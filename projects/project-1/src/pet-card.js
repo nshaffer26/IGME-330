@@ -38,7 +38,7 @@ template.innerHTML = `
     <div id="card-image" class="card-image">
         <button id="card-button" class="button">
             <span class="icon">
-                <img src="./images/star-solid.svg">
+                <img src="./images/star-solid.svg" alt="Favorite button icon">
             </span>
         </button>
     </div>

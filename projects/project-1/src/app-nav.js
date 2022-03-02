@@ -14,7 +14,7 @@ template.innerHTML = `
 <nav class="navbar is-white">
     <div class="navbar-brand">
         <a class="navbar-item" href="home.html">
-            <img id="icon" src="./images/paw-solid.svg">
+            <img id="icon" src="./images/paw-solid.svg" alt="">
         </a>
         <a class="navbar-burger" id="burger">
             <span></span>
