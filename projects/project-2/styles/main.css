@@ -1,0 +1,33 @@
+body {
+    font-family: 'Acme', sans-serif;
+}
+
+.content {
+    margin-bottom: 10px;
+    padding-bottom: 0px;
+}
+
+ul {
+    margin-top: 0px !important;
+}
+
+a {
+    color: #FC6F50;
+}
+
+.button:not(.is-static),
+.button.is-link:disabled {
+    background-color: #FC6F50;
+}
+
+.button:not(.is-static, button:disabled):hover {
+    color: #FC6F50;
+    background-color: white;
+    border: 1px solid #FC6F50;
+}
+
+.button-active {
+    color: #FC6F50 !important;
+    background-color: white !important;
+    border: 1px solid #FC6F50 !important;
+}
