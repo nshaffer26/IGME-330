@@ -5,6 +5,7 @@ let audioCtx;
 
 let beat;
 let intervalID;
+let sources = [];
 
 const trackPaths = { // we'll name our sound files to make it easier to keep track of them
     // kick: "sounds/kick.wav",
@@ -32,14 +33,23 @@ function tracksLoaded(bufferObj)
         // beat = new RhythmSample(bufferObj.kick, bufferObj.snare, bufferObj.hihat);
         if(!intervalID)
         {
+            startButton.innerHTML = "Stop Firing";
             beat.play();
             intervalID = setInterval(fireInTime, beat.timescale * 1000);
         }
         else
         {
+            startButton.innerHTML = "Start Firing";
             clearInterval(intervalID);
             intervalID = null;
-            beat.playing = false;
+            
+            // Stop audio
+            for(let s of sources)
+            {
+                // TODO: FIX
+                s.stop();
+            }
+            sources = [];
         }
     }
 }
@@ -98,6 +108,8 @@ class RhythmSample
                 this.createSourceNodeAndPlay(this.metronome, temp);
             }
         }
+
+        sources = [];
     }
 
     createSourceNodeAndPlay(buffer, time)
@@ -113,6 +125,8 @@ class RhythmSample
 
         // 12 - Start playing the sound
         source.start(time);
+
+        sources.push(source);
     }
 }
 

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Visual Rhythm - App</title>
+    <title>Tempo Attack - App</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
 <body>
     <!-- Header -->
     <app-header>
-        <span slot="title">Visual Rhythm</span>
+        <span slot="title">Tempo Attack</span>
     </app-header>
 
     <!-- Navigation -->
@@ -32,10 +32,83 @@
     <!-- Main Content -->
     <div class="columns p-4 mb-0">
         <div class="column">
-            <canvas>Your browser does not support canvas</canvas>
+            <canvas id="game">Your browser does not support canvas</canvas>
             <!-- <div></div> -->
         </div>
-        <button id="startButton">Toggle Firing</button>
+        <button id="startButton">Start Firing</button>
+        <div>
+            <!-- Temp -->
+            Place bullets on the grid below. Press the button to start/stop firing. It will take a second to stop
+        </div>
+    </div>
+    <div id="staff-container">
+        <!-- <canvas id="staff">Your browser does not support canvas</canvas> -->
+        <div id="control-container" class="container">
+            <div id="CIRCLE" class="staff-row">
+                <div id="circle-symbol" class="bullet-symbol"><img src="./images/circle.png" alt="circle"></div>
+
+                <div class="note-selection-container" data-type="CIRCLE">
+                    <div class="note-selection" data-beat="0" data-selected="false"></div>
+                    <div class="note-selection" data-beat="1" data-selected="false"></div>
+                    <div class="note-selection" data-beat="2" data-selected="false"></div>
+                    <div class="note-selection" data-beat="3" data-selected="false"></div>
+                    <div class="note-selection" data-beat="4" data-selected="false"></div>
+                    <div class="note-selection" data-beat="5" data-selected="false"></div>
+                    <div class="note-selection" data-beat="6" data-selected="false"></div>
+                    <div class="note-selection" data-beat="7" data-selected="false"></div>
+                </div>
+
+                <!-- <select class="genre-selection"></select> -->
+            </div>
+            <div id="TRIANGLE" class="staff-row">
+                <div id="triangle-symbol" class="bullet-symbol"><img src="./images/triangle.png" alt="triangle"></div>
+
+                <div class="note-selection-container" data-type="TRIANGLE">
+                    <div class="note-selection" data-beat="0" data-selected="false"></div>
+                    <div class="note-selection" data-beat="1" data-selected="false"></div>
+                    <div class="note-selection" data-beat="2" data-selected="false"></div>
+                    <div class="note-selection" data-beat="3" data-selected="false"></div>
+                    <div class="note-selection" data-beat="4" data-selected="false"></div>
+                    <div class="note-selection" data-beat="5" data-selected="false"></div>
+                    <div class="note-selection" data-beat="6" data-selected="false"></div>
+                    <div class="note-selection" data-beat="7" data-selected="false"></div>
+                </div>
+
+                <!-- <select class="genre-selection"></select> -->
+            </div>
+            <div id="SQUARE" class="staff-row">
+                <div id="square-symbol" class="bullet-symbol"><img src="./images/square.png" alt="square"></div>
+
+                <div class="note-selection-container" data-type="SQUARE">
+                    <div class="note-selection" data-beat="0" data-selected="false"></div>
+                    <div class="note-selection" data-beat="1" data-selected="false"></div>
+                    <div class="note-selection" data-beat="2" data-selected="false"></div>
+                    <div class="note-selection" data-beat="3" data-selected="false"></div>
+                    <div class="note-selection" data-beat="4" data-selected="false"></div>
+                    <div class="note-selection" data-beat="5" data-selected="false"></div>
+                    <div class="note-selection" data-beat="6" data-selected="false"></div>
+                    <div class="note-selection" data-beat="7" data-selected="false"></div>
+                </div>
+
+                <!-- <select class="genre-selection"></select> -->
+            </div>
+            <div id="HEXAGON" class="staff-row">
+                <div id="hexagon-symbol" class="bullet-symbol"><img src="./images/hexagon.png" alt="hexagon"></div>
+
+                <div class="note-selection-container" data-type="HEXAGON">
+                    <div class="note-selection" data-beat="0" data-selected="false"></div>
+                    <div class="note-selection" data-beat="1" data-selected="false"></div>
+                    <div class="note-selection" data-beat="2" data-selected="false"></div>
+                    <div class="note-selection" data-beat="3" data-selected="false"></div>
+                    <div class="note-selection" data-beat="4" data-selected="false"></div>
+                    <div class="note-selection" data-beat="5" data-selected="false"></div>
+                    <div class="note-selection" data-beat="6" data-selected="false"></div>
+                    <div class="note-selection" data-beat="7" data-selected="false"></div>
+                </div>
+
+                <!-- <select class="genre-selection"></select> -->
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->

@@ -30,5 +30,7 @@ export default class PlayerSprite extends Sprite
         ctx.stroke();
 
         ctx.restore();
+        // let test = this.getRect();
+        // ctx.strokeRect(test.x, test.y, test.width, test.height);
     }
 }

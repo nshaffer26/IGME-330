@@ -1,4 +1,4 @@
-export { getUnitVector, getMouse, getRandom };
+export { getUnitVector, getMouse, getRandom, checkCollision };
 
 function getUnitVector(x, y)
 {
@@ -30,4 +30,9 @@ function getMouse(e)
     mouse.x = e.pageX - e.target.offsetLeft;
     mouse.y = e.pageY - e.target.offsetTop;
     return mouse;
+}
+
+function checkCollision(a, b)
+{
+    return !(a.x + a.width < b.x || b.x + b.width < a.x || a.y + a.height < b.y || b.y + b.height < a.y)
 }

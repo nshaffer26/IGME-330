@@ -16,7 +16,11 @@ export default class Sprite
 
     getRect()
     {
-        return new Rect(this.x, this.y, this.width, this.height);
+        return new Rect(this.x, this.y, this.radius, this.radius);
+    }
+    getSpecialRect()
+    {
+        return new Rect(this.x, this.y, this.specialRadius, this.specialRadius);
     }
 
     reflectX()

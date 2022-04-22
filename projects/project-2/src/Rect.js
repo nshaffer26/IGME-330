@@ -2,10 +2,10 @@ export default class Rect
 {
     constructor(x, y, width, height)
     {
-        this.x = x;
-        this.y = y;
         this.width = width;
         this.height = height;
+        this.x = x - this.width / 2;
+        this.y = y - this.height / 2;
     }
 
     // http://24bitjs.com/2014-11-how-to-detect-if-a-point-is-inside-a-rectangle-in-javascript/
