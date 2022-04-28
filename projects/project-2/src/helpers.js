@@ -2,7 +2,7 @@ import EnemySprite from "./EnemySprite.js";
 import { getUnitVector, getRandom } from "./utils.js";
 export { createEnemySprites };
 
-function createEnemySprites(num = 10, radius = 50, rect = { left: 0, top: 0, width: 300, height: 300 }, speed = 60, color = "red")
+function createEnemySprites(num = 10, type = 1, rect = { left: 0, top: 0, width: 300, height: 300 }, color = "red")
 {
     let sprites = [];
     for (let i = 0; i < num; i++)
@@ -13,8 +13,8 @@ function createEnemySprites(num = 10, radius = 50, rect = { left: 0, top: 0, wid
             x,
             y,
             getUnitVector(getRandom(-1, 1), getRandom(-1, 1)),
-            speed,
-            radius,
+            undefined,
+            type,
             color
         );
 

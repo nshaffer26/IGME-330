@@ -6,6 +6,8 @@ export default class PlayerSprite extends Sprite
     {
         super(x, y, fwd, speed);
         Object.assign(this, { radius, color });
+        this.maxHealth = 100;
+        this.health = this.maxHealth;
     }
 
     draw(ctx, angle = 0)
@@ -32,5 +34,25 @@ export default class PlayerSprite extends Sprite
         ctx.restore();
         // let test = this.getRect();
         // ctx.strokeRect(test.x, test.y, test.width, test.height);
+    }
+
+    displayHealth(ctx)
+    {
+        ctx.save();
+
+        ctx.fillStyle = "red";
+        ctx.strokeStyle = "red";
+        if (this.health >= 0)
+        {
+            ctx.fillRect(10, 10, this.health * 2, 20);
+        }
+        ctx.strokeRect(10, 10, this.maxHealth * 2, 20);
+
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
+        ctx.fillText(`${this.health} / ${this.maxHealth}`, this.maxHealth + 10, 26);
+
+        ctx.restore();
     }
 }

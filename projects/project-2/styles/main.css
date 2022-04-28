@@ -34,20 +34,6 @@ a {
 
 /* Staff Controls */
 #staff-container {
-    /* position: relative; */
-    /* height: 200px; */
-}
-
-#staff {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
-#control-container {
-    /* position: absolute;
-    top: 20px;
-    left: 0; */
     width: 600px;
     margin: 0;
     display: flex;
@@ -64,6 +50,7 @@ a {
     display: flex;
     width: 50px;
     justify-content: center;
+    padding: 4px;
 }
 
 .bullet-symbol img {

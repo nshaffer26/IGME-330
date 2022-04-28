@@ -2,14 +2,25 @@ import Sprite from "./Sprite.js"
 
 export default class EnemySprite extends Sprite
 {
-    constructor(x, y, fwd, speed, radius, color)
+    constructor(x, y, fwd, speed = 80, type, color)
     {
         super(x, y, fwd, speed);
-        Object.assign(this, { radius, color });
+        Object.assign(this, { type, color });
+
+        this.radius = 10;
+        
+        this.target = null;
+        this.targeting = null;
+        this.timerMax = 2;
+        this.timer = this.timerMax;
+
+        if(this.type > 0) this.speed = 60;
     }
 
     draw(ctx, angle = 0)
     {
+        let type = this.type;
+
         ctx.save();
 
         // Enemy
@@ -17,20 +28,41 @@ export default class EnemySprite extends Sprite
         ctx.translate(this.x, this.y);
         ctx.rotate(angle);
         ctx.beginPath();
-        ctx.moveTo(this.radius / 2, 0);
-        ctx.lineTo(-this.radius / 2, this.radius / 2);
-        ctx.lineTo(-this.radius / 2, -this.radius / 2);
+        ctx.moveTo(this.radius, 0);
+        ctx.lineTo(-this.radius, this.radius);
+        ctx.lineTo(-this.radius, -this.radius);
         ctx.closePath();
         ctx.fill();
 
         // Direction
-        ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(this.radius / 2, 0);
-        ctx.lineTo(0, this.radius / 4);
-        ctx.lineTo(0, -this.radius / 4);
-        ctx.closePath();
-        ctx.fill();
+        if (type > 0)
+        {
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.moveTo(this.radius, 0);
+            ctx.lineTo(0, this.radius / 2);
+            ctx.lineTo(0, -this.radius / 2);
+            ctx.closePath();
+
+            if (type == 1)
+            {
+                ctx.stokeStyle = "black";
+                ctx.stroke();
+            }
+            if (type > 1)
+            {
+                ctx.fill();
+            }
+            if (type == 3)
+            {
+                ctx.beginPath();
+                ctx.moveTo(-this.radius * 3 / 2, 0);
+                ctx.lineTo(-this.radius, this.radius / 2);
+                ctx.lineTo(-this.radius, -this.radius / 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+        }
 
 
         ctx.restore();

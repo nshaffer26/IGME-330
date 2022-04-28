@@ -2,10 +2,10 @@ import Sprite from "./Sprite.js"
 
 export default class BulletSprite extends Sprite
 {
-    constructor(x, y, fwd, speed, type, radius, color, stroke = undefined)
+    constructor(x, y, fwd, speed, source, type, radius, color, stroke = undefined)
     {
         super(x, y, fwd, speed);
-        Object.assign(this, { type, radius, color, stroke });
+        Object.assign(this, { source, type, radius, color, stroke });
 
         this.baseRadius = radius;
         this.specialRadius = radius + 60;
@@ -27,20 +27,20 @@ export default class BulletSprite extends Sprite
                 ctx.arc(0, 0, this.radius, 0, Math.PI * 2, false);
                 break;
             case "TRIANGLE":
-                ctx.moveTo(this.radius / 2, 0);
-                ctx.lineTo(-this.radius / 2, this.radius / 2);
-                ctx.lineTo(-this.radius / 2, -this.radius / 2);
+                ctx.moveTo(this.radius, 0);
+                ctx.lineTo(-this.radius, this.radius);
+                ctx.lineTo(-this.radius, -this.radius);
                 break;
             case "SQUARE":
-                ctx.rect(-this.radius / 2, -this.radius / 2, this.radius, this.radius);
+                ctx.rect(-this.radius, -this.radius, this.radius * 2, this.radius * 2);
                 break;
             case "HEXAGON":
-                ctx.moveTo(-this.radius / 2, 0);
-                ctx.lineTo(-this.radius / 4, -this.radius / 2);
-                ctx.lineTo(this.radius / 4, -this.radius / 2);
-                ctx.lineTo(this.radius / 2, 0);
-                ctx.lineTo(this.radius / 4, this.radius / 2);
-                ctx.lineTo(-this.radius / 4, this.radius / 2);
+                ctx.moveTo(-this.radius, 0);
+                ctx.lineTo(-this.radius / 2, -this.radius);
+                ctx.lineTo(this.radius / 2, -this.radius);
+                ctx.lineTo(this.radius, 0);
+                ctx.lineTo(this.radius / 2, this.radius);
+                ctx.lineTo(-this.radius / 2, this.radius);
                 break;
         }
 

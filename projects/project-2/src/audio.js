@@ -1,17 +1,42 @@
 import { fireInTime } from "./app.js";
-export { audioCtx, beat, setupWebaudio };
+export { audioCtx, trackBuffers, setupWebaudio };
 
 let audioCtx;
 
-let beat;
 let intervalID;
-let sources = [];
 
-const trackPaths = { // we'll name our sound files to make it easier to keep track of them
-    // kick: "sounds/kick.wav",
-    // snare: "sounds/snare.wav",
-    // hihat: "sounds/hihat.wav",
-    metronome: "sounds/metronome.wav"
+let source;
+let trackBuffers;
+
+// TODO: Find real sounds
+const trackPaths = {
+    classical: {
+        CIRCLE: "sounds/metronome.wav",
+        TRIANGLE: "sounds/metronome.wav",
+        SQUARE: "sounds/metronome.wav",
+        HEXAGON: "sounds/metronome.wav"
+    },
+    retro: {
+        CIRCLE: "sounds/metronome.wav",
+        TRIANGLE: "sounds/metronome.wav",
+        SQUARE: "sounds/metronome.wav",
+        HEXAGON: "sounds/metronome.wav"
+    },
+    arcade: {
+        CIRCLE: "sounds/metronome.wav",
+        TRIANGLE: "sounds/metronome.wav",
+        SQUARE: "sounds/metronome.wav",
+        HEXAGON: "sounds/metronome.wav"
+    },
+    electronic: {
+        CIRCLE: "sounds/metronome.wav",
+        TRIANGLE: "sounds/metronome.wav",
+        SQUARE: "sounds/metronome.wav",
+        HEXAGON: "sounds/metronome.wav"
+    },
+    other: {
+        metronome: "sounds/metronome.wav"
+    }
 };
 
 function setupWebaudio()
@@ -26,30 +51,26 @@ function setupWebaudio()
 
 function tracksLoaded(bufferObj)
 {
+    // Set the fire rate
+    let tempo = 80; // BPM (Beats Per Minute)
+    let halfNoteTime = 120 / tempo;
+    trackBuffers = bufferObj;
+
     // RhythmSample will create new source nodes and play them every time we click the button 
-    beat = new RhythmSample(bufferObj.metronome);
+    // beat = new RhythmSample(bufferObj.metronome);
     startButton.onclick = _ =>
     {
         // beat = new RhythmSample(bufferObj.kick, bufferObj.snare, bufferObj.hihat);
-        if(!intervalID)
+        if (!intervalID)
         {
             startButton.innerHTML = "Stop Firing";
-            beat.play();
-            intervalID = setInterval(fireInTime, beat.timescale * 1000);
+            intervalID = setInterval(fireInTime, halfNoteTime * 1000);
         }
         else
         {
             startButton.innerHTML = "Start Firing";
             clearInterval(intervalID);
             intervalID = null;
-            
-            // Stop audio
-            for(let s of sources)
-            {
-                // TODO: FIX
-                s.stop();
-            }
-            sources = [];
         }
     }
 }
@@ -59,76 +80,77 @@ function tracksLoaded(bufferObj)
     - has references to 3 `ArrayBuffer` binary arrays
     - `createSourceNodeAndPlay()` creates audio source nodes that point at these arrays and schedules a start time for the node
 */
-class RhythmSample
-{
-    // constructor(kick, snare, hihat, metronome)
-    constructor(metronome)
-    {
-        // this.kick = kick;
-        // this.snare = snare;
-        // this.hihat = hihat;
-        this.metronome = metronome
-        // this.times = [];
-        this.timescale = 0;
-    }
+// class RhythmSample
+// {
+//     // constructor(kick, snare, hihat, metronome)
+//     constructor(metronome)
+//     {
+//         // this.kick = kick;
+//         // this.snare = snare;
+//         // this.hihat = hihat;
+//         this.metronome = metronome
+//         sound = this.metronome;
+//         // this.times = [];
+//         this.timescale = 0;
+//     }
 
-    play()
-    {
-        let startTime = audioCtx.currentTime;
+//     play()
+//     {
+//         let startTime = audioCtx.currentTime;
 
-        let tempo = 80; // BPM (Beats Per Minute)
-        let halfNoteTime = 120 / tempo;
-        let quarterNoteTime = 60 / tempo;
-        let eighthNoteTime = 30 / tempo;
+//         let tempo = 80; // BPM (Beats Per Minute)
+//         let halfNoteTime = 120 / tempo;
+//         let quarterNoteTime = 60 / tempo;
+//         let eighthNoteTime = 30 / tempo;
 
-        this.timescale = halfNoteTime;
-        startTime += quarterNoteTime;
+//         this.timescale = halfNoteTime;
+//         startTime += halfNoteTime;
 
-        // Play 2 bars of the following:
-        for (let bar = 0; bar < 2; bar++)
-        {
-            let time = startTime + bar * 8 * quarterNoteTime;
+//         // Play 2 bars of the following:
+//         for (let bar = 0; bar < 2; bar++)
+//         {
+//             let time = startTime + bar * 4 * halfNoteTime;
 
-            // console.log(this.times);
-            // 6 - Play the bass (kick) drum on beats 1, 5 - both of these source nodes are using the same `ArrayBuffer` binary data
-            // this.createSourceNodeAndPlay(this.kick, time);
-            // this.createSourceNodeAndPlay(this.kick, time + 4 * eighthNoteTime);
+//             // console.log(this.times);
+//             // 6 - Play the bass (kick) drum on beats 1, 5 - both of these source nodes are using the same `ArrayBuffer` binary data
+//             // this.createSourceNodeAndPlay(this.kick, time);
+//             // this.createSourceNodeAndPlay(this.kick, time + 4 * eighthNoteTime);
 
-            // // 7 - Play the snare drum on beats 3, 7 - both of these source nodes are using the same `ArrayBuffer` binary data
-            // this.createSourceNodeAndPlay(this.snare, time + 2 * eighthNoteTime);
-            // this.createSourceNodeAndPlay(this.snare, time + 6 * eighthNoteTime);
-            // this.createSourceNodeAndPlay(this.metronome, time);
+//             // // 7 - Play the snare drum on beats 3, 7 - both of these source nodes are using the same `ArrayBuffer` binary data
+//             // this.createSourceNodeAndPlay(this.snare, time + 2 * eighthNoteTime);
+//             // this.createSourceNodeAndPlay(this.snare, time + 6 * eighthNoteTime);
+//             // this.createSourceNodeAndPlay(this.metronome, time);
 
-            // Play the metronome every fourth note
-            for (let i = 0; i < 8; ++i)
-            {
-                // this.createSourceNodeAndPlay(this.metronome, time + i * eighthNoteTime);
-                let temp = time + i * quarterNoteTime;
-                // this.times = this.times.concat(temp);
-                this.createSourceNodeAndPlay(this.metronome, temp);
-            }
-        }
+//             // Play the metronome every fourth note
+//             for (let i = 0; i < 4; ++i)
+//             {
+//                 // this.createSourceNodeAndPlay(this.metronome, time + i * eighthNoteTime);
+//                 let temp = time + i * halfNoteTime;
+//                 // this.times = this.times.concat(temp);
+//                 // this.createSourceNodeAndPlay(this.metronome, temp);
+//             }
+//         }
 
-        sources = [];
-    }
+//         sources = [];
+//     }
 
-    createSourceNodeAndPlay(buffer, time)
-    {
-        // 9 - Create an `AudioBufferSourceNode`
-        let source = audioCtx.createBufferSource();
+//     createSourceNodeAndPlay(buffer, time)
+//     {
+//         // 9 - Create an `AudioBufferSourceNode`
+//         let source = audioCtx.createBufferSource();
 
-        // 10 - Set its buffer (binary audio data)
-        source.buffer = buffer;
+//         // 10 - Set its buffer (binary audio data)
+//         source.buffer = buffer;
 
-        // 11 - Connect the source node to the destination
-        source.connect(audioCtx.destination);
+//         // 11 - Connect the source node to the destination
+//         source.connect(audioCtx.destination);
 
-        // 12 - Start playing the sound
-        source.start(time);
+//         // 12 - Start playing the sound
+//         source.start(time);
 
-        sources.push(source);
-    }
-}
+//         sources.push(source);
+//     }
+// }
 
 
 /**** We already saw what this class was doing in chapter 1 ****/
@@ -141,19 +163,30 @@ class BufferLoader
         this.callback = callback;
         this.trackBuffers = {};	      // will be populated with {"trackName" : buffer, ...}
         this.loadCount = 0;
-        this.numToLoad = Object.keys(this.trackPaths).length;
+        this.numToLoad = 0;
+
+        for (let genreName of Object.keys(this.trackPaths))
+        {
+            for (let trackName of Object.keys(this.trackPaths[genreName]))
+            {
+                this.numToLoad++;
+            }
+        }
     }
 
     loadTracks()
     {
-        for (let trackName of Object.keys(this.trackPaths))
+        for (let genreName of Object.keys(this.trackPaths))
         {
-            let trackURL = this.trackPaths[trackName];
-            this.loadBuffer(trackName, trackURL);
+            for (let trackName of Object.keys(this.trackPaths[genreName]))
+            {
+                let trackURL = this.trackPaths[genreName][trackName];
+                this.loadBuffer(genreName, trackName, trackURL);
+            }
         }
     }
 
-    loadBuffer(trackName, trackURL)
+    loadBuffer(genreName, trackName, trackURL)
     {
         const request = new XMLHttpRequest();
         request.responseType = "arraybuffer";
@@ -171,7 +204,8 @@ class BufferLoader
             {
                 if (buffer)
                 {
-                    this.trackBuffers[trackName] = buffer;
+                    if(!this.trackBuffers[genreName]) this.trackBuffers[genreName] = {};
+                    this.trackBuffers[genreName][trackName] = buffer;
 
                     if (++this.loadCount == this.numToLoad)
                     {
