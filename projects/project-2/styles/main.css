@@ -1,5 +1,5 @@
 body {
-    font-family: 'Acme', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .content {
@@ -13,6 +13,10 @@ ul {
 
 a {
     color: #FC6F50;
+}
+
+#gameplay {
+    width: 80%;
 }
 
 .button:not(.is-static),
@@ -32,6 +36,26 @@ a {
     border: 1px solid #FC6F50 !important;
 }
 
+#canvas-container {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 10px;
+}
+#game-container {
+    margin: 10px;
+}
+
+/* Leaderboard */
+/* #leaderboard table {
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid black;
+    padding: 4px;
+} */
+
 /* Staff Controls */
 #staff-container {
     width: 600px;
@@ -48,29 +72,38 @@ a {
 
 .bullet-symbol {
     display: flex;
-    width: 50px;
     justify-content: center;
-    padding: 4px;
+    align-items: center;
+    width: 100px;
+    padding: 2px;
+    font-size: 10pt;
 }
 
 .bullet-symbol img {
     display: block;
-    width: 80%;
-    padding: 5px;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
 }
 
 .note-selection-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
-    width: 400px;
+    width: 100%;
 }
 
 .note-selection {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 40px;
     border-left: 1px solid black;
     border-right: 1px solid black;
+}
+
+.note-selection:hover
+{
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .note-selection img {
@@ -79,6 +112,6 @@ a {
     padding: 5px;
 }
 
-.genre-selection {
+/* .genre-selection {
     width: 150px;
-}
+} */

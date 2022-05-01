@@ -1,0 +1,68 @@
+{
+    "drops": {
+        "tier1": [
+            "HEALTH",
+            "CIRCLE",
+            "CIRCLE",
+            "CIRCLE"
+        ],
+        "tier2": [
+            "CIRCLE",
+            "CIRCLE",
+            "CIRCLE",
+            "SQUARE",
+            "SQUARE",
+            "TRIANGLE"
+        ],
+        "tier3": [
+            "HEALTH",
+            "CIRCLE",
+            "CIRCLE",
+            "SQUARE",
+            "SQUARE",
+            "TRIANGLE",
+            "TRIANGLE",
+            "HEXAGON"
+        ],
+        "tier4": [
+            "HEALTH",
+            "CIRCLE",
+            "SQUARE",
+            "SQUARE",
+            "TRIANGLE",
+            "TRIANGLE",
+            "TRIANGLE",
+            "HEXAGON"
+        ]
+    },
+    "enemies": {
+        "tier1": [
+            0,
+            0,
+            0,
+            1
+        ],
+        "tier2": [
+            0,
+            1
+        ],
+        "tier3": [
+            0,
+            0,
+            1,
+            1,
+            1,
+            2
+        ],
+        "tier4": [
+            0,
+            1,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+        ]
+    }
+}

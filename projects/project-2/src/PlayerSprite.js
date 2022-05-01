@@ -14,16 +14,17 @@ export default class PlayerSprite extends Sprite
     {
         ctx.save();
 
-        ctx.fillStyle = this.color;
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 2;
         ctx.translate(this.x, this.y);
         ctx.rotate(angle);
         ctx.beginPath();
         ctx.arc(0, 0, this.radius, 0, Math.PI * 2, false);
         ctx.closePath();
-        ctx.fill();
+        ctx.stroke();
 
         ctx.fillStyle = "white";
-        ctx.strokeStyle = "black";
+        ctx.strokeStyle = "white";
         ctx.beginPath();
         ctx.arc(0, 0, this.radius + 6, -Math.PI * 0.1, Math.PI * 0.1, false);
         ctx.lineTo(this.radius * 2, 0);
@@ -32,8 +33,6 @@ export default class PlayerSprite extends Sprite
         ctx.stroke();
 
         ctx.restore();
-        // let test = this.getRect();
-        // ctx.strokeRect(test.x, test.y, test.width, test.height);
     }
 
     displayHealth(ctx)
@@ -49,9 +48,10 @@ export default class PlayerSprite extends Sprite
         ctx.strokeRect(10, 10, this.maxHealth * 2, 20);
 
         ctx.font = "16px Arial";
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.textAlign = "center";
-        ctx.fillText(`${this.health} / ${this.maxHealth}`, this.maxHealth + 10, 26);
+        ctx.textBaseline = "middle";
+        ctx.fillText(`${this.health} / ${this.maxHealth}`, this.maxHealth + 10, 20);
 
         ctx.restore();
     }

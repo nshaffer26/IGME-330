@@ -1,166 +1,53 @@
-import { fireInTime } from "./app.js";
 export { audioCtx, trackBuffers, setupWebaudio };
 
 let audioCtx;
-
-let intervalID;
-
-let source;
 let trackBuffers;
 
-// TODO: Find real sounds
+// TODO: Find more sounds
 const trackPaths = {
     classical: {
-        CIRCLE: "sounds/metronome.wav",
-        TRIANGLE: "sounds/metronome.wav",
-        SQUARE: "sounds/metronome.wav",
-        HEXAGON: "sounds/metronome.wav"
+        CIRCLE: "sounds/temp/bass.wav",
+        TRIANGLE: "sounds/temp/snare.wav",
+        SQUARE: "sounds/temp/cymbal.wav",
+        HEXAGON: "sounds/temp/hihat.wav"
     },
-    retro: {
-        CIRCLE: "sounds/metronome.wav",
-        TRIANGLE: "sounds/metronome.wav",
-        SQUARE: "sounds/metronome.wav",
-        HEXAGON: "sounds/metronome.wav"
-    },
+    // retro: {
+    //     CIRCLE: "sounds/metronome.wav",
+    //     TRIANGLE: "sounds/metronome.wav",
+    //     SQUARE: "sounds/metronome.wav",
+    //     HEXAGON: "sounds/metronome.wav"
+    // },
     arcade: {
-        CIRCLE: "sounds/metronome.wav",
-        TRIANGLE: "sounds/metronome.wav",
-        SQUARE: "sounds/metronome.wav",
-        HEXAGON: "sounds/metronome.wav"
+        CIRCLE: "sounds/arcade/circle.wav",
+        TRIANGLE: "sounds/arcade/triangle.flac",
+        SQUARE: "sounds/arcade/square.wav",
+        HEXAGON: "sounds/arcade/hexagon.wav"
     },
-    electronic: {
-        CIRCLE: "sounds/metronome.wav",
-        TRIANGLE: "sounds/metronome.wav",
-        SQUARE: "sounds/metronome.wav",
-        HEXAGON: "sounds/metronome.wav"
-    },
+    // electronic: {
+    //     CIRCLE: "sounds/metronome.wav",
+    //     TRIANGLE: "sounds/metronome.wav",
+    //     SQUARE: "sounds/metronome.wav",
+    //     HEXAGON: "sounds/metronome.wav"
+    // },
     other: {
-        metronome: "sounds/metronome.wav"
+        metronome: "sounds/other/metronome.wav"
     }
 };
 
 function setupWebaudio()
 {
-    // TODO: audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    audioCtx = new window.AudioContext();
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
     // Create a new instance of sound file loader and then load the files
-    // tracksLoaded() will be called once the audio files are loaded
-    new BufferLoader(audioCtx, trackPaths, tracksLoaded).loadTracks();
+    new BufferLoader(audioCtx, trackPaths).loadTracks();
 }
 
-function tracksLoaded(bufferObj)
-{
-    // Set the fire rate
-    let tempo = 80; // BPM (Beats Per Minute)
-    let halfNoteTime = 120 / tempo;
-    trackBuffers = bufferObj;
-
-    // RhythmSample will create new source nodes and play them every time we click the button 
-    // beat = new RhythmSample(bufferObj.metronome);
-    startButton.onclick = _ =>
-    {
-        // beat = new RhythmSample(bufferObj.kick, bufferObj.snare, bufferObj.hihat);
-        if (!intervalID)
-        {
-            startButton.innerHTML = "Stop Firing";
-            intervalID = setInterval(fireInTime, halfNoteTime * 1000);
-        }
-        else
-        {
-            startButton.innerHTML = "Start Firing";
-            clearInterval(intervalID);
-            intervalID = null;
-        }
-    }
-}
-
-/*
-  Class RhythmSample:
-    - has references to 3 `ArrayBuffer` binary arrays
-    - `createSourceNodeAndPlay()` creates audio source nodes that point at these arrays and schedules a start time for the node
-*/
-// class RhythmSample
-// {
-//     // constructor(kick, snare, hihat, metronome)
-//     constructor(metronome)
-//     {
-//         // this.kick = kick;
-//         // this.snare = snare;
-//         // this.hihat = hihat;
-//         this.metronome = metronome
-//         sound = this.metronome;
-//         // this.times = [];
-//         this.timescale = 0;
-//     }
-
-//     play()
-//     {
-//         let startTime = audioCtx.currentTime;
-
-//         let tempo = 80; // BPM (Beats Per Minute)
-//         let halfNoteTime = 120 / tempo;
-//         let quarterNoteTime = 60 / tempo;
-//         let eighthNoteTime = 30 / tempo;
-
-//         this.timescale = halfNoteTime;
-//         startTime += halfNoteTime;
-
-//         // Play 2 bars of the following:
-//         for (let bar = 0; bar < 2; bar++)
-//         {
-//             let time = startTime + bar * 4 * halfNoteTime;
-
-//             // console.log(this.times);
-//             // 6 - Play the bass (kick) drum on beats 1, 5 - both of these source nodes are using the same `ArrayBuffer` binary data
-//             // this.createSourceNodeAndPlay(this.kick, time);
-//             // this.createSourceNodeAndPlay(this.kick, time + 4 * eighthNoteTime);
-
-//             // // 7 - Play the snare drum on beats 3, 7 - both of these source nodes are using the same `ArrayBuffer` binary data
-//             // this.createSourceNodeAndPlay(this.snare, time + 2 * eighthNoteTime);
-//             // this.createSourceNodeAndPlay(this.snare, time + 6 * eighthNoteTime);
-//             // this.createSourceNodeAndPlay(this.metronome, time);
-
-//             // Play the metronome every fourth note
-//             for (let i = 0; i < 4; ++i)
-//             {
-//                 // this.createSourceNodeAndPlay(this.metronome, time + i * eighthNoteTime);
-//                 let temp = time + i * halfNoteTime;
-//                 // this.times = this.times.concat(temp);
-//                 // this.createSourceNodeAndPlay(this.metronome, temp);
-//             }
-//         }
-
-//         sources = [];
-//     }
-
-//     createSourceNodeAndPlay(buffer, time)
-//     {
-//         // 9 - Create an `AudioBufferSourceNode`
-//         let source = audioCtx.createBufferSource();
-
-//         // 10 - Set its buffer (binary audio data)
-//         source.buffer = buffer;
-
-//         // 11 - Connect the source node to the destination
-//         source.connect(audioCtx.destination);
-
-//         // 12 - Start playing the sound
-//         source.start(time);
-
-//         sources.push(source);
-//     }
-// }
-
-
-/**** We already saw what this class was doing in chapter 1 ****/
 class BufferLoader
 {
-    constructor(ctx, trackPaths, callback)
+    constructor(ctx, trackPaths)
     {
         this.ctx = ctx;
         this.trackPaths = trackPaths; // ex. {"trackName" :"trackURL", ...}
-        this.callback = callback;
         this.trackBuffers = {};	      // will be populated with {"trackName" : buffer, ...}
         this.loadCount = 0;
         this.numToLoad = 0;
@@ -186,45 +73,43 @@ class BufferLoader
         }
     }
 
-    loadBuffer(genreName, trackName, trackURL)
+    async loadBuffer(genreName, trackName, trackURL)
     {
-        const request = new XMLHttpRequest();
-        request.responseType = "arraybuffer";
-        request.open("GET", trackURL, true);
-        request.send();
-
-        /* Callbacks */
-        request.onerror = e => console.error('BufferLoader: XHR error');
-
-        request.onload = e =>
+        try
         {
-            const arrayBuffer = request.response;
+            let response = await fetch(trackURL);
+            if (!response.ok)
+            {
+                throw new Error(response.statusText);
+            }
+
+            const arrayBuffer = await response.arrayBuffer();
 
             const decodeSuccess = buffer =>
             {
                 if (buffer)
                 {
-                    if(!this.trackBuffers[genreName]) this.trackBuffers[genreName] = {};
+                    if (!this.trackBuffers[genreName]) this.trackBuffers[genreName] = {};
                     this.trackBuffers[genreName][trackName] = buffer;
 
                     if (++this.loadCount == this.numToLoad)
                     {
-                        this.callback(this.trackBuffers);
+                        trackBuffers = this.trackBuffers;
                     }
                 }
                 else
                 {
-                    console.error('error decoding file data: ' + url);
+                    console.error('Error decoding file data: ' + url);
                     return;
                 }
             };
-
-            const decodeError = e =>
-            {
-                console.error('decodeAudioData error', e);
-            };
+            const decodeError = e => console.error('decodeAudioData error', e);
 
             this.ctx.decodeAudioData(arrayBuffer, decodeSuccess, decodeError);
-        };
+        }
+        catch (error)
+        {
+            console.error('BufferLoader: Fetch error');
+        }
     }
 }

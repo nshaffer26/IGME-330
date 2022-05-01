@@ -24,7 +24,8 @@ export default class EnemySprite extends Sprite
         ctx.save();
 
         // Enemy
-        ctx.fillStyle = this.color;
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 2;
         ctx.translate(this.x, this.y);
         ctx.rotate(angle);
         ctx.beginPath();
@@ -32,12 +33,12 @@ export default class EnemySprite extends Sprite
         ctx.lineTo(-this.radius, this.radius);
         ctx.lineTo(-this.radius, -this.radius);
         ctx.closePath();
-        ctx.fill();
+        ctx.stroke();
 
         // Direction
         if (type > 0)
         {
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "white";
             ctx.beginPath();
             ctx.moveTo(this.radius, 0);
             ctx.lineTo(0, this.radius / 2);
@@ -46,7 +47,7 @@ export default class EnemySprite extends Sprite
 
             if (type == 1)
             {
-                ctx.stokeStyle = "black";
+                ctx.stokeStyle = "white";
                 ctx.stroke();
             }
             if (type > 1)
@@ -64,9 +65,6 @@ export default class EnemySprite extends Sprite
             }
         }
 
-
         ctx.restore();
-        // let test = this.getRect();
-        // ctx.strokeRect(test.x, test.y, test.width, test.height);
     }
 }

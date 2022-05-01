@@ -9,9 +9,7 @@
     <title>Tempo Attack - Documentation</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/fonts/josefin-sans/stylesheet.css">
     <link rel="stylesheet" href="./styles/main.css">
 
     <script src="./src/loader.js" type="module"></script>
@@ -31,8 +29,10 @@
         <div class="column">
             <h2 class="is-size-4">Project Requirements</h2>
             <div class="content">
-                <p>The requirements for this project can be found <a
-                        href="https://github.com/tonethar/IGME-330-Spring-2022/blob/main/projects/p2.md">here</a></p>
+                <p>
+                    The requirements for this project can be found
+                    <a href="https://github.com/tonethar/IGME-330-Spring-2022/blob/main/projects/p2.md">here</a>
+                </p>
             </div>
 
             <h2 class="is-size-4">Resources Utilized</h2>
@@ -43,6 +43,8 @@
                     <li><a href="https://bulma.io/documentation/form/general/">Bulma Forms</a></li>
                     <li><a href="https://img.icons8.com/color/48/000000/vaporwave.png">Icons8 Vaporwave</a></li>
                     <li><a href="https://img.icons8.com/color/48/000000/audio-wave--v1.png">Icons8 Audio Wave</a></li>
+                    <li><a href="https://fonts.google.com/specimen/Josefin+Sans#standard-styles">Font</a></li>
+                    <li><a href="https://transfonter.org/">Font Face Generator</a></li>
                     <li><a href="https://developer.mozilla.org/en-US/">MDN Web Docs</a></li>
                     <li>
                         <a
@@ -50,11 +52,16 @@
                             Tempo and BPM
                         </a>
                     </li>
-                    <!-- TODO: FONT -->
                     <li>
                         <a
                             href="https://stackoverflow.com/questions/48484237/how-do-i-make-something-rotate-towards-mouse">
                             Stack Overflow: Rotate Player
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://stackoverflow.com/questions/6312993/javascript-seconds-to-time-string-with-format-hhmmss">
+                            Stack Overflow: Display Time
                         </a>
                     </li>
                     <li><a href="https://freesound.org/people/Druminfected/sounds/250552/">Sound: Metronome</a></li>
@@ -64,7 +71,7 @@
             <h2 class="is-size-4">JS Libraries</h2>
             <div class="content">
                 <ul>
-                    <li>TODO...?</li>
+                    <li>N/A</li>
                 </ul>
             </div>
 
@@ -72,26 +79,58 @@
             <div class="content">
                 <p>The following technologies were deployed in the making of this project:</p>
                 <ul>
-                    <li>Web components were used to create custom elements. They were utilized for the website's header,
-                        footer, and navigation.</li>
-                    <li>Icons8 was used to obtain basic icons.</li>
-                    <li>Google Fonts was used to obtain a unique font for the website.</li>
-                    <li>TODO...</li>
+                    <li>
+                        Web components were used to create custom elements. They were utilized for the website's header,
+                        footer, and navigation
+                    </li>
+                    <li>Icons8 was used to obtain basic icons</li>
+                    <li>Google Fonts was used to obtain a unique font for the website</li>
                 </ul>
                 <p>My work on this project goes outside what was covered in class in several ways, including:</p>
                 <ul>
                     <li>A custom font from Google Fonts</li>
-                    <li>TODO...</li>
+                    <li>
+                        Four unique enemy behavior patterns:
+                        <ul>
+                            <li>Tier 1 enemies bounce around the screen and occasionally change direction</li>
+                            <li>Tier 2 enemies chase the player</li>
+                            <li>Tier 3 enemies chase and shoot at the player</li>
+                            <li>Tier 4 enemies move around the screen and periodically stop to shoot at the player</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Four unique bullet behaviors:
+                        <ul>
+                            <li>Circle bullets fly straight in the direction you were facing</li>
+                            <li>Triangle bullets target and chase an enemy</li>
+                            <li>Square bullets explode on impact with an enemy and send surrounding enemies away</li>
+                            <li>Hexagon bullets implode on impact with an enemy and suck in surrounding enemies</li>
+                        </ul>
+                    </li>
+                    <li>
+                        The spawn rates of enemy tiers and bullet types are based on the level achieved and are read in
+                        from a JSON file
+                    </li>
+                    <li>All bullets fire to a beat denoted by the grid below the game</li>
+                    <li>
+                        The player can choose a new bullet (or health) at the end of each level to be added to their
+                        inventory
+                    </li>
+                    <li>The player can move their avatar using WASD and aim with the mouse</li>
+                    <li>
+                        Each player's best level and time is recorded to local storage and updated and displayed as they
+                        progress
+                    </li>
                 </ul>
             </div>
 
             <h2 class="is-size-4">Grading</h2>
             <div class="content">
-                <p>TODO...
-                    <!-- As per the <a
-                    href="https://github.com/tonethar/IGME-330-Spring-2022/blob/main/projects/p2.md#ix-grading-rubric">rubric</a>,
-                all requirements appear to have been met. For ways in which I went above and beyond, see the Noteworthy
-                section above. -->
+                <p>
+                    As per the <a
+                        href="https://github.com/tonethar/IGME-330-Spring-2022/blob/main/projects/p2.md#ix-grading-rubric">rubric</a>,
+                    all requirements appear to have been met. For ways in which I went above and beyond, see the
+                    Noteworthy section above.
                 </p>
             </div>
 
@@ -99,7 +138,13 @@
             <div class="content">
                 <p>Given additional time, I would have liked to accomplish at least the following:</p>
                 <ul>
-                    <li>TODO...</li>
+                    <li>
+                        Every "world" (i.e., level 2-1 would be world 2, level 1) would give the player access to a new
+                        "genre" for each bullet's sound, allowing them to mix and match different genres and sounds in
+                        later worlds
+                    </li>
+                    <li>Every world would have a different style/color scheme based on that world's genre</li>
+                    <li>A leaderboard showing the highest level and fastest time for all users</li>
                 </ul>
             </div>
         </div>

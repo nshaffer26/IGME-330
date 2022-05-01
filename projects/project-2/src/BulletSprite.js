@@ -8,8 +8,10 @@ export default class BulletSprite extends Sprite
         Object.assign(this, { source, type, radius, color, stroke });
 
         this.baseRadius = radius;
-        this.specialRadius = radius + 60;
+        this.specialRadius = radius + 30;
         this.target = null;
+        this.interval = null;
+        this.alpha = 1;
         this.moving = true;
     }
 
@@ -32,6 +34,7 @@ export default class BulletSprite extends Sprite
                 ctx.lineTo(-this.radius, -this.radius);
                 break;
             case "SQUARE":
+                ctx.globalAlpha = this.alpha;
                 ctx.rect(-this.radius, -this.radius, this.radius * 2, this.radius * 2);
                 break;
             case "HEXAGON":
@@ -42,6 +45,12 @@ export default class BulletSprite extends Sprite
                 ctx.lineTo(this.radius / 2, this.radius);
                 ctx.lineTo(-this.radius / 2, this.radius);
                 break;
+            case "HEALTH":
+                ctx.arc(-this.radius / 2, -this.radius / 2, this.radius / 2, Math.PI, 0, false);
+                ctx.arc(this.radius / 2, -this.radius / 2, this.radius / 2, Math.PI, 0, false);
+                ctx.lineTo(0, this.radius);
+                ctx.lineTo(-this.radius, -this.radius / 2);
+            default: break;
         }
 
         ctx.closePath();
@@ -52,19 +61,13 @@ export default class BulletSprite extends Sprite
             ctx.stroke();
         }
         ctx.restore();
-
-        // let test = this.getRect();
-        // ctx.strokeRect(test.x, test.y, test.width, test.height);
-        // if (this.specialRadius)
-        // {
-        //     test = this.getSpecialRect();
-        //     ctx.strokeRect(test.x, test.y, test.width, test.height);
-        // }
     }
 
     explode = () =>
     {
         this.radius++;
+        this.alpha -= 0.04;
+        if (this.alpha <= 0) this.alpha = 0;
     }
 
     implode = () =>

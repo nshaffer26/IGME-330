@@ -9,13 +9,9 @@
     <title>Tempo Attack - App</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
-    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles/fonts/josefin-sans/stylesheet.css">
     <link rel="stylesheet" href="./styles/main.css">
 
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
     <script src="./src/loader.js" type="module"></script>
     <script src="./src/app.js" type="module"></script>
 </head>
@@ -30,115 +26,131 @@
     <app-nav data-page="app"></app-nav>
 
     <!-- Main Content -->
-    <div id="canvas-container">
-        <canvas id="game">Your browser does not support canvas</canvas>
-        <button id="startButton">Start Firing</button>
-        <div>
-            <!-- Temp -->
-            Place bullets on the grid below. Press the button to start/stop firing.
-        </div>
-    </div>
-    <div id="control-container">
-        <div>Active Bullets: <span id="active-bullets">0</span> / <span id="max-active-bullets">0</span></div>
-        <div id="staff-container">
-            <div id="CIRCLE" class="staff-row">
-                <div id="circle-symbol" class="bullet-symbol">
-                    <img src="./images/circle.png" alt="circle">
-                    <span id="num-circles" class="num-bullet">0</span>
-                </div>
-
-                <div class="note-selection-container" data-type="CIRCLE">
-                    <div class="note-selection" data-beat="0" data-selected="false"></div>
-                    <div class="note-selection" data-beat="1" data-selected="false"></div>
-                    <div class="note-selection" data-beat="2" data-selected="false"></div>
-                    <div class="note-selection" data-beat="3" data-selected="false"></div>
-                    <div class="note-selection" data-beat="4" data-selected="false"></div>
-                    <div class="note-selection" data-beat="5" data-selected="false"></div>
-                    <div class="note-selection" data-beat="6" data-selected="false"></div>
-                    <div class="note-selection" data-beat="7" data-selected="false"></div>
-                </div>
-
-                <select id="CIRCLE-genre-selection" class="genre-selection">
-                    <option value="classical">Classical</option>
-                    <option value="retro">Retro</option>
-                    <option value="arcade">Arcade</option>
-                    <option value="electronic">Electronic</option>
-                </select>
-            </div>
-            <div id="TRIANGLE" class="staff-row">
-                <div id="triangle-symbol" class="bullet-symbol">
-                    <img src="./images/triangle.png" alt="triangle">
-                    <span id="num-triangles" class="num-bullet">0</span>
-                </div>
-
-                <div class="note-selection-container" data-type="TRIANGLE">
-                    <div class="note-selection" data-beat="0" data-selected="false"></div>
-                    <div class="note-selection" data-beat="1" data-selected="false"></div>
-                    <div class="note-selection" data-beat="2" data-selected="false"></div>
-                    <div class="note-selection" data-beat="3" data-selected="false"></div>
-                    <div class="note-selection" data-beat="4" data-selected="false"></div>
-                    <div class="note-selection" data-beat="5" data-selected="false"></div>
-                    <div class="note-selection" data-beat="6" data-selected="false"></div>
-                    <div class="note-selection" data-beat="7" data-selected="false"></div>
-                </div>
-
-                <select id="TRIANGLE-genre-selection" class="genre-selection">
-                    <option value="classical">Classical</option>
-                    <option value="retro">Retro</option>
-                    <option value="arcade">Arcade</option>
-                    <option value="electronic">Electronic</option>
-                </select>
-            </div>
-            <div id="SQUARE" class="staff-row">
-                <div id="square-symbol" class="bullet-symbol">
-                    <img src="./images/square.png" alt="square">
-                    <span id="num-squares" class="num-bullet">0</span>
-                </div>
-
-                <div class="note-selection-container" data-type="SQUARE">
-                    <div class="note-selection" data-beat="0" data-selected="false"></div>
-                    <div class="note-selection" data-beat="1" data-selected="false"></div>
-                    <div class="note-selection" data-beat="2" data-selected="false"></div>
-                    <div class="note-selection" data-beat="3" data-selected="false"></div>
-                    <div class="note-selection" data-beat="4" data-selected="false"></div>
-                    <div class="note-selection" data-beat="5" data-selected="false"></div>
-                    <div class="note-selection" data-beat="6" data-selected="false"></div>
-                    <div class="note-selection" data-beat="7" data-selected="false"></div>
-                </div>
-
-                <select id="SQUARE-genre-selection" class="genre-selection">
-                    <option value="classical">Classical</option>
-                    <option value="retro">Retro</option>
-                    <option value="arcade">Arcade</option>
-                    <option value="electronic">Electronic</option>
-                </select>
-            </div>
-            <div id="HEXAGON" class="staff-row">
-                <div id="hexagon-symbol" class="bullet-symbol">
-                    <img src="./images/hexagon.png" alt="hexagon">
-                    <span id="num-hexagons" class="num-bullet">0</span>
-                </div>
-
-                <div class="note-selection-container" data-type="HEXAGON">
-                    <div class="note-selection" data-beat="0" data-selected="false"></div>
-                    <div class="note-selection" data-beat="1" data-selected="false"></div>
-                    <div class="note-selection" data-beat="2" data-selected="false"></div>
-                    <div class="note-selection" data-beat="3" data-selected="false"></div>
-                    <div class="note-selection" data-beat="4" data-selected="false"></div>
-                    <div class="note-selection" data-beat="5" data-selected="false"></div>
-                    <div class="note-selection" data-beat="6" data-selected="false"></div>
-                    <div class="note-selection" data-beat="7" data-selected="false"></div>
-                </div>
-
-                <select id="HEXAGON-genre-selection" class="genre-selection">
-                    <option value="classical">Classical</option>
-                    <option value="retro">Retro</option>
-                    <option value="arcade">Arcade</option>
-                    <option value="electronic">Electronic</option>
-                </select>
+    <section id="game-container">
+        <div id="canvas-container">
+            <!-- <div id="canvas-container"> -->
+            <canvas id="game">Your browser does not support canvas</canvas>
+            <!-- <canvas id="game">Your browser does not support canvas</canvas> -->
+            <div id="leaderboard-container">
+                <!-- <div id="score-form">
+                    <div class="field">
+                        <label class="label" for="display-name">Display Name</label>
+                        <div class="control">
+                            <input id="display-name" class="input" type="text"
+                                placeholder="Enter a name for the leaderboard">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button id="submit" class="button is-link">Submit</button>
+                        </div>
+                    </div>
+                </div> -->
+                <div id="leaderboard"></div>
             </div>
         </div>
-    </div>
+        <div id="control-container">
+            <div>Active Bullets: <span id="active-bullets">0</span> / <span id="max-active-bullets">0</span></div>
+            <div id="staff-container">
+                <div id="CIRCLE" class="staff-row">
+                    <div id="circle-symbol" class="bullet-symbol">
+                        <img src="./images/circle.png" alt="circle">
+                        <span id="num-circles" class="num-bullet">0</span>
+                    </div>
+
+                    <div class="note-selection-container" data-type="CIRCLE">
+                        <div class="note-selection" data-beat="0" data-selected="false"></div>
+                        <div class="note-selection" data-beat="1" data-selected="false"></div>
+                        <div class="note-selection" data-beat="2" data-selected="false"></div>
+                        <div class="note-selection" data-beat="3" data-selected="false"></div>
+                        <div class="note-selection" data-beat="4" data-selected="false"></div>
+                        <div class="note-selection" data-beat="5" data-selected="false"></div>
+                        <div class="note-selection" data-beat="6" data-selected="false"></div>
+                        <div class="note-selection" data-beat="7" data-selected="false"></div>
+                    </div>
+
+                    <!-- <select id="CIRCLE-genre-selection" class="genre-selection">
+                    <option value="classical">Classical</option>
+                    <option value="retro">Retro</option>
+                    <option value="arcade">Arcade</option>
+                    <option value="electronic">Electronic</option>
+                </select> -->
+                </div>
+                <div id="TRIANGLE" class="staff-row">
+                    <div id="triangle-symbol" class="bullet-symbol">
+                        <img src="./images/triangle.png" alt="triangle">
+                        <span id="num-triangles" class="num-bullet">0</span>
+                    </div>
+
+                    <div class="note-selection-container" data-type="TRIANGLE">
+                        <div class="note-selection" data-beat="0" data-selected="false"></div>
+                        <div class="note-selection" data-beat="1" data-selected="false"></div>
+                        <div class="note-selection" data-beat="2" data-selected="false"></div>
+                        <div class="note-selection" data-beat="3" data-selected="false"></div>
+                        <div class="note-selection" data-beat="4" data-selected="false"></div>
+                        <div class="note-selection" data-beat="5" data-selected="false"></div>
+                        <div class="note-selection" data-beat="6" data-selected="false"></div>
+                        <div class="note-selection" data-beat="7" data-selected="false"></div>
+                    </div>
+
+                    <!-- <select id="TRIANGLE-genre-selection" class="genre-selection">
+                    <option value="classical">Classical</option>
+                    <option value="retro">Retro</option>
+                    <option value="arcade">Arcade</option>
+                    <option value="electronic">Electronic</option>
+                </select> -->
+                </div>
+                <div id="SQUARE" class="staff-row">
+                    <div id="square-symbol" class="bullet-symbol">
+                        <img src="./images/square.png" alt="square">
+                        <span id="num-squares" class="num-bullet">0</span>
+                    </div>
+
+                    <div class="note-selection-container" data-type="SQUARE">
+                        <div class="note-selection" data-beat="0" data-selected="false"></div>
+                        <div class="note-selection" data-beat="1" data-selected="false"></div>
+                        <div class="note-selection" data-beat="2" data-selected="false"></div>
+                        <div class="note-selection" data-beat="3" data-selected="false"></div>
+                        <div class="note-selection" data-beat="4" data-selected="false"></div>
+                        <div class="note-selection" data-beat="5" data-selected="false"></div>
+                        <div class="note-selection" data-beat="6" data-selected="false"></div>
+                        <div class="note-selection" data-beat="7" data-selected="false"></div>
+                    </div>
+
+                    <!-- <select id="SQUARE-genre-selection" class="genre-selection">
+                    <option value="classical">Classical</option>
+                    <option value="retro">Retro</option>
+                    <option value="arcade">Arcade</option>
+                    <option value="electronic">Electronic</option>
+                </select> -->
+                </div>
+                <div id="HEXAGON" class="staff-row">
+                    <div id="hexagon-symbol" class="bullet-symbol">
+                        <img src="./images/hexagon.png" alt="hexagon">
+                        <span id="num-hexagons" class="num-bullet">0</span>
+                    </div>
+
+                    <div class="note-selection-container" data-type="HEXAGON">
+                        <div class="note-selection" data-beat="0" data-selected="false"></div>
+                        <div class="note-selection" data-beat="1" data-selected="false"></div>
+                        <div class="note-selection" data-beat="2" data-selected="false"></div>
+                        <div class="note-selection" data-beat="3" data-selected="false"></div>
+                        <div class="note-selection" data-beat="4" data-selected="false"></div>
+                        <div class="note-selection" data-beat="5" data-selected="false"></div>
+                        <div class="note-selection" data-beat="6" data-selected="false"></div>
+                        <div class="note-selection" data-beat="7" data-selected="false"></div>
+                    </div>
+
+                    <!-- <select id="HEXAGON-genre-selection" class="genre-selection">
+                    <option value="classical">Classical</option>
+                    <option value="retro">Retro</option>
+                    <option value="arcade">Arcade</option>
+                    <option value="electronic">Electronic</option>
+                </select> -->
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <app-footer>&copy; 2022 Nicholas Shaffer</app-footer>
